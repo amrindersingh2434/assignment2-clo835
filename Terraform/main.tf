@@ -82,7 +82,6 @@ data "aws_ami" "amazon_linux" {
 resource "aws_instance" "app" {
   ami                    = data.aws_ami.amazon_linux.id
   instance_type          = "t3.medium"
-  key_name               = var.key_name
   vpc_security_group_ids = [aws_security_group.app_sg.id]
 
 
@@ -136,3 +135,7 @@ resource "aws_instance" "app" {
   }
 }
 
+resource "aws_key_pair" "k8s" {
+  key_name   = "pubkey"
+  public_key = file("/home/ec2-user/environment/pubkey.pub")
+}
