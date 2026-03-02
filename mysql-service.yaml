@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: mysql-clusterip
+  name: mysql-service
   namespace: mysql-as
 spec:
   type: ClusterIP
