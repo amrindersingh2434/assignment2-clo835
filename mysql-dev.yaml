@@ -4,7 +4,7 @@ metadata:
   name: mysql-deployment
   namespace: mysql-as
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: mysql
@@ -13,17 +13,14 @@ spec:
       labels:
         app: mysql
     spec:
+      imagePullSecrets:
+        - name: ecr-secret
       containers:
       - name: mysql
-        image: mysql:8.0
-        env:
-        - name: MYSQL_ROOT_PASSWORD
-          value: "pw"
-        - name: MYSQL_DATABASE
-          value: "employees"  
-        - name: MYSQL_USER
-          value: "user"    
-        - name: MYSQL_PASSWORD
-          value: "password"
+        image: 225180847770.dkr.ecr.us-east-1.amazonaws.com/clo835-mysql:8.0
         ports:
-        - containerPort: 3306
+      - containerPort: 3306
+	env:
+          - name: MYSQL_ROOT_PASSWORD
+            value: "pw"
+
