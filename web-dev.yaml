@@ -19,9 +19,18 @@ spec:
       - name: employees
         image: 225180847770.dkr.ecr.us-east-1.amazonaws.com/clo835-app:1.0
         ports:
-        - containerPort: 3000
+        - containerPort: 8080
         env:
+        - name: APP_COLOR
+          value: "lime"
         - name: DBHOST
-          value: "mysql-service"
-        - name: DBPW
+          value: "mysql-service.mysql.svc.cluster.local"
+        - name: DBPORT
+          value: "3306"
+        - name: DBUSER
+          value: "root"
+        - name: DBPWD
           value: "pw"
+        - name: DATABASE
+          value: "employees"
+
